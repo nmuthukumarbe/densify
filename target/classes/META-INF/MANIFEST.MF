@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: m0n00qb
+Build-Jdk: 15.0.2
+Implementation-Title: densify
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.walmart.densify
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/densify
+Main-Class: com.gs.cardamom.App
+Created-By: Maven Integration for Eclipse
+

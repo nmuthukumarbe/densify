@@ -1,0 +1,124 @@
+
+
+<div class="pagetitle">
+	<h1>Team</h1>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item">Team</li>
+			<li class="breadcrumb-item active"><span th:text="${team.name}"></span></li>
+		</ol>
+	</nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section profile">
+      <div class="row">
+        
+
+        <div class="col-xl-12">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" aria-selected="true" role="tab">Overview</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" onclick="searchCost()" data-bs-toggle="tab" data-bs-target="#cost" aria-selected="false" tabindex="-1" role="tab">Cost</button>
+                </li>
+                
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" onclick="searchAnalysis()" data-bs-toggle="tab" data-bs-target="#analysis" aria-selected="false" tabindex="-1" role="tab">Analytics</button>
+                </li>
+                
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" onclick="searchAnomalies()" data-bs-toggle="tab" data-bs-target="#anomalies" aria-selected="false" tabindex="-1" role="tab">Anomalies</button>
+                </li>
+                
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" onclick="searchIncidents()" data-bs-toggle="tab" data-bs-target="#incidents" aria-selected="false" tabindex="-1" role="tab">Incidents</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel">
+                  <h5 class="card-title">About</h5>
+                  <p class="small fst-italic"> <span th:text="${team.more}"></span> </p>
+
+                  <h5 class="card-title">Details</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Team Name</div>
+                    <input type="hidden" id="team-id" th:value="${team.id}" />
+                    <div class="col-lg-9 col-md-8"><span th:text="${team.name}"></span></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Onboarding Page URL</div>
+                    <div class="col-lg-9 col-md-8"> <a th:href=${team.onboardingPageUrl}>On boarding</a>  </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">availability</div>
+                    <div class="col-lg-9 col-md-8"> <i class="bi bi-check-circle-fill" style="color: rgb(0, 128, 55);"></i> </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">goldenSignal</div>
+                    <div class="col-lg-9 col-md-8"> <i class="bi bi-check-circle-fill" style="color: rgb(0, 128, 55);"></i> </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Availability Url</div>
+                    <div class="col-lg-9 col-md-8"> <a th:href="${team.availabilityUrl}">Availability</a> </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">GoldenSignal Url</div>
+                    <div class="col-lg-9 col-md-8"> <a th:href="${team.goldenSignalUrl}">Golden Signal</a>  </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">UT Coverage</div>
+                    <div class="col-lg-9 col-md-8"> <span th:text="${team.ut}"></span> % </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">IT coverage</div>
+                    <div class="col-lg-9 col-md-8"> <span th:text="${team.it}"></span> % </div>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="cost" role="tabpanel">
+
+                  <span>cost table</span>
+
+                </div>
+                
+                <div class="tab-pane fade profile-edit pt-3" id="analysis" role="tabpanel">
+
+                </div>
+                
+                <div class="tab-pane fade profile-edit pt-3" id="anomalies" role="tabpanel">
+
+                </div>
+                
+                <div class="tab-pane fade profile-edit pt-3" id="incidents" role="tabpanel">
+
+                </div>
+
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>

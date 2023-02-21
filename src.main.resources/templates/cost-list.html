@@ -1,0 +1,51 @@
+
+<!-- End Page Title -->
+
+<section class="section">
+	<div class="row">
+		<div class="col-lg-12">
+
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Monthly Cost</h5>
+
+					<div class="row">
+						<div class="col-md-9"></div>
+						<div class="col-md-3">
+							<button type="button" onclick="showAddCost()"
+								class="btn btn-success btn-sm">Add</button>
+						</div>
+					</div>
+
+					<table class="table" id="cost-table">
+						<thead>
+							<tr>
+								<th scope="col">Year</th>
+								<th scope="col">Month</th>
+								<th scope="col">MLS $</th>
+								<th scope="col">Cassandra $</th>
+								<th scope="col">WCNP $</th>
+								<th scope="col">Ingestion $</th>
+								<th scope="col">SF and NSF $</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="cost : ${costList}">
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.year}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.month}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.mls}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.cassandra}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.wcnp}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.ingestion}]]</td>
+								<td th:onclick="|showViewCost('${cost.id}');|">[[${cost.sfnsf}]]</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

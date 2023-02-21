@@ -1,0 +1,219 @@
+<div class="col-lg-12">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Line Chart</h5>
+
+			<div class="row">
+
+				<div class="col-lg-6"> 
+					<div id="pieChart" ></div>
+				</div>
+				
+				<div class="col-lg-6"> 
+					<div id="columnChart" ></div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+
+				<div class="col-lg-6">
+					<!-- Line Chart -->
+					<div id="lineChart"></div>
+				</div>
+
+				<div class="col-lg-6">
+					<div id="lineChartMLS"></div>
+				</div>
+
+			</div>
+
+			<script th:inline="javascript">
+			    var costList = [[${costList}]]
+			    var costData=[];
+			    var costMonth=[];
+			    var latstMonthCost=[];
+			    var ingestionRate=[];
+			    
+			    var wcnp=[];
+			    var mls=[];
+			    var cassandra=[];
+			    
+			    latstMonthCost.push(costList[costList.length-1].mls);
+			    latstMonthCost.push(costList[costList.length-1].cassandra);
+			    latstMonthCost.push(costList[costList.length-1].ingestion);
+			    latstMonthCost.push(costList[costList.length-1].sfnsf);
+			    
+			    for(i=0;i<costList.length;i++){
+			    	costData.push(costList[i].cost);
+			    	costMonth.push(costList[i].month);
+			    	ingestionRate.push(costList[i].ingestionRate);
+			    	
+			    	wcnp.push(costList[i].wcnp);
+			    	mls.push(costList[i].mls);
+			    	cassandra.push(costList[i].cassandra);
+			    }
+			</script>
+			
+			<script>
+                
+                var options = {
+                		series: [{
+                            name: 'WCNP',
+                            data: wcnp
+                          }, {
+                            name: 'Cassandra',
+                            data: cassandra
+                          }, {
+                            name: 'MLS',
+                            data: mls
+                          }],
+                          chart: {
+                            type: 'bar',
+                            height: 350
+                          },
+                          plotOptions: {
+                            bar: {
+                              horizontal: false,
+                              columnWidth: '55%',
+                              endingShape: 'rounded'
+                            },
+                          },
+                          dataLabels: {
+                            enabled: false
+                          },
+                          stroke: {
+                            show: true,
+                            width: 2,
+                            colors: ['transparent']
+                          },
+                          xaxis: {
+                            categories: costMonth,
+                          },
+                          yaxis: {
+                            title: {
+                              text: '$ '
+                            }
+                          },
+                          fill: {
+                            opacity: 1
+                          },
+                          tooltip: {
+                            y: {
+                              formatter: function(val) {
+                                return "$ " + val 
+                              }
+                            }
+                          }
+                		
+          	        };
+                
+                var chart = new ApexCharts(document.querySelector("#columnChart"), options);
+    	        chart.render();
+    	        
+              </script>
+              
+			<script>
+                
+                var options = {
+          	          series: latstMonthCost,
+          	          chart: {
+          	          height: 350,
+          	          type: 'pie',
+          	          zoom: {
+          	            enabled: true
+          	          }, 
+          	        	toolbar: {
+                        show: true
+                      }
+          	        },
+          	      labels: ['MLS', 'Cassandra', 'Ingestion WCNP', 'SF and NSF WCNP']
+          	        };
+                
+                var chart = new ApexCharts(document.querySelector("#pieChart"), options);
+    	        chart.render();
+    	        
+              </script>
+
+			<script>
+
+	        var options = {
+	          series: [{
+	            name: "Cost $",
+	            data: costData 
+	        }],
+	          chart: {
+	          height: 350,
+	          type: 'line',
+	          zoom: {
+	            enabled: false
+	          }
+	        },
+	        dataLabels: {
+	          enabled: false
+	        },
+	        stroke: {
+	          curve: 'straight'
+	        },
+	        title: {
+	          text: 'Cost by Month',
+	          align: 'left'
+	        },
+	        grid: {
+	          row: {
+	            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	            opacity: 0.5
+	          },
+	        },
+	        xaxis: {
+	          categories: costMonth,
+	        }
+	        };
+
+	        var chart = new ApexCharts(document.querySelector("#lineChart"), options);
+	        chart.render();
+			
+              </script>
+
+			<script>
+
+	        var options = {
+	          series: [{
+	            name: "Ingestion Rate (TB)",
+	            data: ingestionRate 
+	        }],
+	          chart: {
+	          height: 350,
+	          type: 'line',
+	          zoom: {
+	            enabled: false
+	          }
+	        },
+	        dataLabels: {
+	          enabled: false
+	        },
+	        stroke: {
+	          curve: 'straight'
+	        },
+	        title: {
+	          text: 'MLS Ingestion Rate',
+	          align: 'left'
+	        },
+	        grid: {
+	          row: {
+	            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	            opacity: 0.5
+	          },
+	        },
+	        xaxis: {
+	          categories: costMonth,
+	        }
+	        };
+
+	        var chart = new ApexCharts(document.querySelector("#lineChartMLS"), options);
+	        chart.render();
+			
+              </script>
+		</div>
+	</div>
+</div>
